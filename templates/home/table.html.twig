@@ -1,0 +1,22 @@
+
+                {% for item in data %}
+                    <tr class="table-active js-Content">
+                        <td>{{ item.station.name }}</td>
+                        <td>{{ item.line.name}}</td>
+                        {% if  item.isterminus == 1 %}
+                            <td>Terminus</td>
+                        {% else %}
+                            <td>Correspondance</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+
+
+
+
+
+
+
+
+
+

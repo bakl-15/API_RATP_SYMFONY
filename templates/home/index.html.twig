@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Symfony !{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+
+    <div class="container mt-5" id="container">
+  <h1 class="text-center text-primary">Test Symfony </h1>
+        <div class="form-section mt-5">
+             <form id="form-filters">
+                 <div class="form-group">
+                     <label for="filtre" class="mb-3">Filtrer par nom de ligne </label>
+                     <select class="custom-select form-control" id="filter">
+                         {% for line in lines %}
+                             <option id={{ line.name }} value={{ line.name }}>
+                                 {{ line.name }}
+                             </option>
+                         {% endfor %}
+                     </select>
+                 </div>
+             </form>
+        </div>
+        <table class="table table-dark mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Nom de la gare</th>
+                    <th scope="col">N de ligne</th>
+                    <th scope="col">Correspondance</th>
+                </tr>
+            </thead>
+            <tbody id="dynamiqBody">
+                    {% for item in data %}
+                    <tr class="table-active js-Content">
+                        <td>{{ item.station.name }}</td>
+                        <td>{{ item.line.name}}</td>
+                          {% if  item.isterminus == 1 %}
+                              <td>Terminus</td>
+                          {% else %}
+                                  <td>Correspondance</td>
+                         {% endif %}
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('/js/app.js') }}"></script>
+{% endblock %}
